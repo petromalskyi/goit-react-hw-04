@@ -1,0 +1,23 @@
+.list {
+  width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.item {
+  /* flex-grow: 1; */
+  /* height: 200px; */
+  flex-basis: calc((100% - 30px) / 4);
+}
+.thumb {
+  /* width: 338px; */
+  height: 220px;
+}
+
+.thumb img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}

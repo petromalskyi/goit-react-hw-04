@@ -1,5 +1,4 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-// import { useId } from 'react';
 import * as Yup from 'yup';
 import { IoIosSearch } from 'react-icons/io';
 import css from './SearchBar.module.css';
@@ -12,7 +11,6 @@ const FeedbackSchema = Yup.object().shape({
 });
 
 export default function SearchBar({ onSearch }) {
-  //   const queryFieldId = useId();
   return (
     <header className={css.header}>
       <Formik
@@ -24,16 +22,11 @@ export default function SearchBar({ onSearch }) {
         validationSchema={FeedbackSchema}
       >
         <Form className={css.form}>
-          {/* <label className={css.label} htmlFor={queryFieldId}> */}
-
-          {/* <IoIosSearch className={css.icon} /> */}
           <Field
             className={css.input}
             name="query"
             placeholder="Search images and photos"
-            //   id={queryFieldId}
           />
-          {/* </label> */}
           <button className={css.button} type="submit">
             <IoIosSearch className={css.icon} />
           </button>
