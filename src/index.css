@@ -24,3 +24,9 @@ img {
   display: block;
   max-width: 100%;
 }
+
+.color-ring-wrapper {
+  display: block;
+  padding: 0;
+  margin: 0 auto;
+}

@@ -26,7 +26,11 @@ export default function SearchBar({ onSearch }) {
             className={css.input}
             name="query"
             placeholder="Search images and photos"
+            type="text"
+            autoFocus={true}
+            // autocomplete={false}
           />
+          <ErrorMessage className={css.error} name="query" component="b" />
           <button className={css.button} type="submit">
             <IoIosSearch className={css.icon} />
           </button>

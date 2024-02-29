@@ -1,38 +1,35 @@
 import { useState, useEffect } from 'react';
-import './App.module.css';
 import SearchBar from '../SearchBar/SearchBar';
 import { fetchImages } from '../../components/images-api';
 import ImageGallery from '../ImageGallery/ImageGallery';
+import Loader from '../Loader/Loader';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import css from './App.module.css';
 
 export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [page, setPage] = useState(1);
-
-  const [images, setImages] = useState([]); //  const [articles, setArticles] = useState([]);
-
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [error, setError] = useState(false);
-
-  // X7bmSryaDQ4Zl9buwsMLINezY-hQu2EgXC4tlifkBsM
+  const [images, setImages] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (searchQuery === '') {
+    if (searchQuery.trim() === '') {
       return;
     }
 
     async function getData() {
       try {
-        //     setIsLoading(true);
-        //     setError(false);
+        setIsLoading(true);
+        setError(false);
         const data = await fetchImages(searchQuery, page);
         setImages(prevImages => {
           return [...prevImages, ...data.results];
         });
-        //     toast.success('HTTP success!!!! 🐷 ✅ 🎉');
       } catch (error) {
-        // setError(true);
+        setError(true);
       } finally {
-        // setIsLoading(false);
+        setIsLoading(false);
       }
     }
     getData();
@@ -44,20 +41,21 @@ export default function App() {
     setImages([]);
   };
 
+  const handleLoadMore = () => {
+    setPage(page + 1);
+  };
+
   return (
     <>
       <SearchBar onSearch={handleSearch} />
-      {/* {error && <ErrorMessage />} */}
+      {error && <ErrorMessage />}
       {images.length > 0 && <ImageGallery items={images} />}
-      {/* {articles.length > 0 && !isLoading && (
-        <button onClick={handleLoadMore}>Load more</button>
-      )} */}
-      {/* {isLoading && (
-        <p>
-          <b>Loading articles...</b>
-        </p>
-      )} */}
-      {/* <Toaster position="bottom-center" /> */}
+      {images.length > 0 && !isLoading && (
+        <button className={css.loadmore} onClick={handleLoadMore}>
+          Load more
+        </button>
+      )}
+      {isLoading && <Loader></Loader>}
     </>
   );
 }

@@ -35,3 +35,12 @@
   width: 25px;
   height: 25px;
 }
+
+.error {
+  position: absolute;
+  top: 45px;
+  left: 600px;
+  text-align: center;
+  font-size: 22px;
+  color: red;
+}

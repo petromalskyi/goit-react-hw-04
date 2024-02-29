@@ -1,1 +1,11 @@
-
+.loadmore {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2px;
+  font-family: inherit;
+  border-radius: 5px;
+  padding: 8px;
+  color: #fff;
+  background-color: blue;
+}
