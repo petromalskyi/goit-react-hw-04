@@ -4,10 +4,8 @@ import { IoIosSearch } from 'react-icons/io';
 import css from './SearchBar.module.css';
 
 const FeedbackSchema = Yup.object().shape({
-  query: Yup.string()
-    .min(1, 'Too Short!')
-    .max(100, 'Too Long!')
-    .required('Required'),
+  query: Yup.string().min(2, 'Too Short!').max(75, 'Too Long!'),
+  // .required('Required'),
 });
 
 export default function SearchBar({ onSearch }) {
@@ -28,7 +26,6 @@ export default function SearchBar({ onSearch }) {
             placeholder="Search images and photos"
             type="text"
             autoFocus={true}
-            // autocomplete={false}
           />
           <ErrorMessage className={css.error} name="query" component="b" />
           <button className={css.button} type="submit">
