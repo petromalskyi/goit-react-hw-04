@@ -5,7 +5,6 @@ import css from './SearchBar.module.css';
 
 const FeedbackSchema = Yup.object().shape({
   query: Yup.string().min(2, 'Too Short!').max(75, 'Too Long!'),
-  // .required('Required'),
 });
 
 export default function SearchBar({ onSearch }) {
