@@ -1,12 +1,13 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-// import * as Yup from 'yup';
+import * as Yup from 'yup';
 import { IoIosSearch } from 'react-icons/io';
 import toast, { Toaster } from 'react-hot-toast';
 import css from './SearchBar.module.css';
 
-// const FeedbackSchema = Yup.object().shape({
-//   query: Yup.string().min(2, 'Too Short!').max(75, 'Too Long!'),
-// });
+const FeedbackSchema = Yup.object().shape({
+  query: Yup.string().trim().min(2, 'Too Short!').max(50, 'Too Long!'),
+  // .required('Required'),
+});
 
 export default function SearchBar({ onSubmit }) {
   return (
@@ -24,7 +25,7 @@ export default function SearchBar({ onSubmit }) {
               }
             }
           }}
-          //  validationSchema={FeedbackSchema}
+          validationSchema={FeedbackSchema}
         >
           <Form className={css.form}>
             <Field

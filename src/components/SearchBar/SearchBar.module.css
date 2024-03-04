@@ -3,7 +3,7 @@
   margin: 0 auto;
   height: 60px;
   padding-top: 20px;
-  background-color: blue;
+  background-color: rgba(0, 0, 255, 0.8);
   margin-bottom: 5px;
 }
 
@@ -38,8 +38,9 @@
 
 .error {
   position: absolute;
-  top: 45px;
-  left: 600px;
+  top: -6px;
+  left: 300px;
+
   text-align: center;
   font-size: 22px;
   color: red;

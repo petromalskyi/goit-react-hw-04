@@ -50,6 +50,7 @@ export default function App() {
     setSearchQuery(newQuery);
     setPage(1);
     setImages([]);
+    setError(false);
   };
 
   const handleLoadMore = () => {
