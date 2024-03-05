@@ -34,7 +34,6 @@ export default function ImageModal({
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
-        onClick={openModal}
       >
         <img src={imgForModal} alt={alt} />;
       </Modal>

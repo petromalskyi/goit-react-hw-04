@@ -1,46 +1,48 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
 import { IoIosSearch } from 'react-icons/io';
 import toast, { Toaster } from 'react-hot-toast';
 import css from './SearchBar.module.css';
 
-const FeedbackSchema = Yup.object().shape({
-  query: Yup.string().trim().min(2, 'Too Short!').max(50, 'Too Long!'),
-  // .required('Required'),
-});
-
 export default function SearchBar({ onSubmit }) {
+  const handleSubmit = evt => {
+    evt.preventDefault();
+
+    const form = evt.target;
+    const query = form.elements.query.value.trim();
+
+    if (!query) {
+      toast.error('Please enter anything in the field of search');
+      return;
+    }
+    if (query.length < 2) {
+      toast.error('To shot');
+      return;
+    }
+    if (query.length > 50) {
+      toast.error('To long');
+      return;
+    }
+
+    onSubmit(query);
+
+    form.reset();
+  };
+
   return (
     <>
       <header className={css.header}>
-        <Formik
-          initialValues={{ query: '' }}
-          onSubmit={(values, actions) => {
-            {
-              if (!values.query.trim()) {
-                toast.error('Please enter anything in the field of search');
-              } else {
-                onSubmit(values.query);
-                actions.resetForm();
-              }
-            }
-          }}
-          validationSchema={FeedbackSchema}
-        >
-          <Form className={css.form}>
-            <Field
-              className={css.input}
-              name="query"
-              placeholder="Search images and photos"
-              type="text"
-              autoFocus={true}
-            />
-            <ErrorMessage className={css.error} name="query" component="b" />
-            <button className={css.button} type="submit">
-              <IoIosSearch className={css.icon} />
-            </button>
-          </Form>
-        </Formik>
+        <form className={css.form} onSubmit={handleSubmit}>
+          <input
+            className={css.input}
+            name="query"
+            placeholder="Search images and photos"
+            type="text"
+            autoFocus={true}
+          />
+
+          <button className={css.button} type="submit">
+            <IoIosSearch className={css.icon} />
+          </button>
+        </form>
       </header>
       <Toaster />
     </>
