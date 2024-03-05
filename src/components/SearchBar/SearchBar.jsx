@@ -37,6 +37,7 @@ export default function SearchBar({ onSubmit }) {
             placeholder="Search images and photos"
             type="text"
             autoFocus={true}
+            required
           />
 
           <button className={css.button} type="submit">
